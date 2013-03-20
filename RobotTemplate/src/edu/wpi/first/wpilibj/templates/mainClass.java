@@ -14,6 +14,7 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.Relay;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.Solenoid;
+import edu.wpi.first.wpilibj.Timer;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -31,6 +32,8 @@ public class mainClass extends IterativeRobot {
     Solenoid pistonOneOut = new Solenoid(1);
     Solenoid pistonOneIn = new Solenoid(2);
     //Relay compressorRelay = new Relay(1);
+    long timeThingCurrent;
+    long timeThingElapsed = 0;
     
     /**
      * This function is run when the robot is first started up and should be
@@ -45,7 +48,13 @@ public class mainClass extends IterativeRobot {
      * This function is called periodically during autonomous
      */
     public void autonomousPeriodic() {
-
+        long timeThingStart = System.currentTimeMillis();
+        if(timeThingElapsed < 5000){
+            mainDrive.tankDrive(.5,.5);
+            timeThingCurrent = System.currentTimeMillis();
+            timeThingElapsed = timeThingCurrent - timeThingStart;
+        }
+      
     }
 
     /**
