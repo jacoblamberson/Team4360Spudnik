@@ -34,6 +34,8 @@ public class mainClass extends IterativeRobot {
     //Relay compressorRelay = new Relay(1);
     long timeThingCurrent;
     long timeThingElapsed = 0;
+    long timeThingStart = 0;
+    boolean coolBoolean = true;
     
     /**
      * This function is run when the robot is first started up and should be
@@ -48,7 +50,10 @@ public class mainClass extends IterativeRobot {
      * This function is called periodically during autonomous
      */
     public void autonomousPeriodic() {
-        long timeThingStart = System.currentTimeMillis();
+        if (coolBoolean=true){
+            timeThingStart = System.currentTimeMillis();
+            coolBoolean=false;
+        }
         if(timeThingElapsed < 5000){
             mainDrive.tankDrive(.5,.5);
             timeThingCurrent = System.currentTimeMillis();
